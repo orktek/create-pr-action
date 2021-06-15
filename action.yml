@@ -2,9 +2,18 @@ name: 'Create PR'
 description: 'Create a new PR from two branches'
 author: 'Patricio B.'
 inputs:
-  GITHUB_TOKEN:
+  owner:
+    description: "Default is current reopsitory's owner."
+  repo:
+    description: "Default is current reopsitory's name."
+  token:
     description: 'GitHub token'
     required: true
+  base:
+    description: 'Base branch'
+    required: true
+  head:
+    description: 'Head Branch'
 runs:
   using: 'node12'
   main: 'dist/index.js'
