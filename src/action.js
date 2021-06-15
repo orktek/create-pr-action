@@ -1,16 +1,15 @@
 const core = require('@actions/core');
-
-
 const { Octokit } = require("@octokit/rest")
 
-const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
+const token = core.getInput('token');
+const owner = core.getInput('owner');
+const repo = core.getInput('repo');
+const head = core.getInput('head');
+const base = core.getInput('base');
 
 
 const octokit = new Octokit({
-
-
-
-  auth: GITHUB_TOKEN,
+  auth: token,
   log: {
     debug: () => {},
     info: () => {},
@@ -20,20 +19,15 @@ const octokit = new Octokit({
 })
 
 async function run() {
-
-  
-
   try {
     let result = await octokit.request('POST /repos/{owner}/{repo}/pulls', {
-          owner: 'saturn-sonic',
-          repo: 'monorepo',
-          head: 'release/5.10',
-          base: 'master',
+          owner: owner,
+          repo: repo,
+          head: head,
+          base: base,
           title: 'test'
         })
-
     console.log(result);
-  
   } catch (error) {
       console.log(error.message);
       core.setFailed(error.message);
