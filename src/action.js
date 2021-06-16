@@ -5,22 +5,6 @@ const token = core.getInput('token');
 
 console.log(token);
 
-const owner = core.getInput('owner');
-
-console.log(owner);
-
-const repo = core.getInput('repo');
-
-console.log(repo);
-
-const head = core.getInput('head');
-
-console.log(head);
-
-const base = core.getInput('base');
-
-console.log(base);
-
 const octokit = new Octokit({
   auth: token,
   log: {
@@ -32,6 +16,14 @@ const octokit = new Octokit({
 })
 
 async function run() {
+  
+  console.log('run');
+
+  const owner = core.getInput('owner');
+  const repo = core.getInput('repo');
+  const head = core.getInput('head');
+  const base = core.getInput('base');
+
   try {
     let result = await octokit.request('POST /repos/{owner}/{repo}/pulls', {
           owner: owner,
@@ -40,8 +32,9 @@ async function run() {
           base: base,
           title: 'test'
         })
-    console.log(result);
+    console.log(result.status);
   } catch (error) {
+      console.log(error);
       console.log(error.message);
       core.setFailed(error.message);
   }
