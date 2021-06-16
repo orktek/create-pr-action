@@ -5198,11 +5198,24 @@ const core = __nccwpck_require__(186);
 const { Octokit } = __nccwpck_require__(375)
 
 const token = core.getInput('token');
+
+console.log(token);
+
 const owner = core.getInput('owner');
+
+console.log(owner);
+
 const repo = core.getInput('repo');
+
+console.log(repo);
+
 const head = core.getInput('head');
+
+console.log(head);
+
 const base = core.getInput('base');
 
+console.log(base);
 
 const octokit = new Octokit({
   auth: token,
