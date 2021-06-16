@@ -5217,6 +5217,7 @@ const base = core.getInput('base');
 
 console.log(base);
 
+
 const octokit = new Octokit({
   auth: token,
   log: {
@@ -5228,10 +5229,15 @@ const octokit = new Octokit({
 })
 
 async function run() {
+  console.log('run');
+
+
+
+
   try {
     let result = await octokit.request('POST /repos/{owner}/{repo}/pulls', {
-          owner: owner,
-          repo: repo,
+          owner: 'saturn-sonic',
+          repo: 'monorepo',
           head: head,
           base: base,
           title: 'test'
